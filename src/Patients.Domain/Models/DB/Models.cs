@@ -23,6 +23,10 @@ namespace Patients.Domain {
         public void AddEntity(Patient entity) {
             Add(entity);
         }
+        public void UpdateEntity(Patient entity) {
+            Attach<Patient>(entity);
+            Entry(entity).State = EntityState.Modified;
+        }
 
         public void RemoveEntity(Patient entity) {
             Remove(entity);

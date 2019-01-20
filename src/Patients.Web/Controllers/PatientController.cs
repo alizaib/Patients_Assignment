@@ -17,6 +17,13 @@ namespace Patients.Web.Controllers {
             return SendAsync<CreatePatientCommand, PatientReq, PatientRes>(req);
             
         }
+        [HttpPost("UpdatePatient/{PatientId:int}")]
+        public Task<PatientRes> CreatePatient(UpdatePatientReq req) {
+            int Id = System.Int32.Parse(this.ControllerContext.RouteData.Values["PatientId"].ToString());
+            req.Id = Id;
+            return SendAsync<UpdatePatientCommand, UpdatePatientReq, PatientRes>(req);
+
+        }
         [HttpPost("FindPatient")]
         public Task<IEnumerable<PatientRes>> FindPatient(PatientCriteria req) {
             return SendAsync<FindPatientQuery, PatientCriteria, IEnumerable<PatientRes>>(req);

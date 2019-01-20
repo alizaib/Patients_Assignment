@@ -11,6 +11,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using Patients.Core.Swagger;
 
 namespace Patients.Web {
     public class Startup {
@@ -32,6 +33,7 @@ namespace Patients.Web {
                 options.SwaggerDoc("v1", new Info { Title = "Patient API", Version = "v1.0" });
                 options.ExampleFilters();
                 options.CustomOperationIds(apiDesc => null);
+                options.SchemaFilter<SwaggerExcludeFilter>();
             });
             MapperConfiguration.Configure();
         }

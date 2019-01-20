@@ -7,6 +7,7 @@ namespace Patients.Core {
         where T: class {
         T CreateEntity();
         void AddEntity(T entity);
+        void UpdateEntity(T entity);
         void RemoveEntity(T entity);
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetAll();
