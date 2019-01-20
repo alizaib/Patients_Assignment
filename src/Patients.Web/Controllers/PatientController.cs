@@ -12,10 +12,20 @@ namespace Patients.Web.Controllers {
         public PatientController(IContext<Patient> context, IMediator mediator) : base(context, mediator) {
         }
         
-        [HttpPost]
-        public Task<PatientRes> Post(PatientReq req) {
+        [HttpPost("CreatePatient")]
+        public Task<PatientRes> CreatePatient(PatientReq req) {
             return SendAsync<CreatePatientCommand, PatientReq, PatientRes>(req);
             
+        }
+        [HttpPost("FindPatient")]
+        public Task<IEnumerable<PatientRes>> FindPatient(PatientCriteria req) {
+            return SendAsync<FindPatientQuery, PatientCriteria, IEnumerable<PatientRes>>(req);
+
+        }
+        [HttpPost("GetAll")]
+        public Task<IEnumerable<PatientRes>> GetAll() {
+            return FindPatient(null);
+
         }
     }
 }

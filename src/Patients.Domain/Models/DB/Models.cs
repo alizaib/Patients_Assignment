@@ -3,6 +3,8 @@ using Patients.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Patients.Domain {
@@ -24,6 +26,11 @@ namespace Patients.Domain {
 
         public void RemoveEntity(Patient entity) {
             Remove(entity);
+        }
+        public IQueryable<Patient> GetAll() => this.Set<Patient>();
+        public IQueryable<Patient> FindBy(Expression<Func<Patient, bool>> predicate) {
+            IQueryable<Patient> query = this.Set<Patient>().Where(predicate);
+            return query;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

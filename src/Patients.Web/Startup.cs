@@ -31,6 +31,7 @@ namespace Patients.Web {
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new Info { Title = "Patient API", Version = "v1.0" });
                 options.ExampleFilters();
+                options.CustomOperationIds(apiDesc => null);
             });
             MapperConfiguration.Configure();
         }
