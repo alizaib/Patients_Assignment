@@ -27,5 +27,10 @@ namespace Patients.Web.Controllers {
             return FindPatient(null);
 
         }
+        [HttpDelete("Delete/{PatientId:int}")]
+        public Task<bool> DeletePatient() {
+            int Id = System.Int32.Parse(this.ControllerContext.RouteData.Values["PatientId"].ToString());
+            return SendAsync<DeletePatientCommand, int, bool>(Id);
+        }
     }
 }
